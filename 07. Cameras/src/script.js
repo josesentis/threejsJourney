@@ -12,9 +12,7 @@ const cursor = {
 
 window.addEventListener('mousemove', event => {
   cursor.x = event.clientX / window.innerWidth - 0.5;
-  cursor.y = event.clientY / window.innerHeight - 0.5;
-
-  console.log(cursor.x, cursor.y);
+  cursor.y = - (event.clientY / window.innerHeight - 0.5);
 });
 
 /**
@@ -58,13 +56,18 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setSize(sizes.width, sizes.height)
 
 // Animate
-const clock = new THREE.Clock()
+// const clock = new THREE.Clock()
 
 const tick = () => {
-  const elapsedTime = clock.getElapsedTime()
+  // const elapsedTime = clock.getElapsedTime()
 
   // Update objects
   // mesh.rotation.y = elapsedTime;
+
+  // Update camera
+  camera.position.x = cursor.x * 3;
+  camera.position.y = cursor.y * 3;
+  camera.lookAt(new THREE.Vector3())
 
   // Render
   renderer.render(scene, camera)
@@ -73,4 +76,4 @@ const tick = () => {
   window.requestAnimationFrame(tick)
 }
 
-tick()
+tick();
