@@ -15,11 +15,22 @@ const material = new THREE.MeshBasicMaterial({ color: 0xff0000 })
 const mesh = new THREE.Mesh(geometry, material)
 scene.add(mesh)
 
+// Position
 // mesh.position.x = 0.7;
 // mesh.position.y = -0.6;
 // mesh.position.z = 1;
-
 mesh.position.set(0.7, -0.6, 1)
+
+// Scale
+// mesh.scale.x = 2;
+// mesh.scale.y = 0.5;
+// mesh.scale.z = 0.5;
+mesh.scale.set(2, 0.5, 0.5);
+
+// Rotate
+mesh.rotation.reorder('Y');
+mesh.rotation.y = Math.PI * 0.25;
+mesh.rotation.x = Math.PI * 0.25;
 
 // Axis Helper
 const axisHelper = new THREE.AxisHelper(3)
