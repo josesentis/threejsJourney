@@ -5,11 +5,16 @@ import * as THREE from 'three'
 /**
  * Cursor
  */
-// const x;
-// const y;
+const cursor = {
+  x: 0,
+  y: 0
+}
 
 window.addEventListener('mousemove', event => {
-  console.log(event.clientX);
+  cursor.x = event.clientX / window.innerWidth - 0.5;
+  cursor.y = event.clientY / window.innerHeight - 0.5;
+
+  console.log(cursor.x, cursor.y);
 });
 
 /**
