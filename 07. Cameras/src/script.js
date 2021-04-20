@@ -1,6 +1,17 @@
 import './style.css'
 import * as THREE from 'three'
 
+
+/**
+ * Cursor
+ */
+// const x;
+// const y;
+
+window.addEventListener('mousemove', event => {
+  console.log(event.clientX);
+});
+
 /**
  * Base
  */
@@ -29,9 +40,9 @@ const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 
 // const aspectRatio = sizes.width / sizes.height;
 // const camera = new THREE.OrthographicCamera(-1 * aspectRatio, 1 * aspectRatio, 1, -1, 0.1, 100);
 
-camera.position.x = 2
-camera.position.y = 2
-camera.position.z = 2
+// camera.position.x = 2
+// camera.position.y = 2
+camera.position.z = 3
 camera.lookAt(mesh.position)
 scene.add(camera)
 
@@ -48,7 +59,7 @@ const tick = () => {
   const elapsedTime = clock.getElapsedTime()
 
   // Update objects
-  mesh.rotation.y = elapsedTime;
+  // mesh.rotation.y = elapsedTime;
 
   // Render
   renderer.render(scene, camera)
