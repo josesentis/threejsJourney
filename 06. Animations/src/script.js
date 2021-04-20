@@ -1,5 +1,6 @@
 import './style.css'
 import * as THREE from 'three'
+import gsap from 'gsap';
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
@@ -55,6 +56,10 @@ const tick = () => {
   // camera.position.y = Math.sin(elapsedTime);
   // camera.position.x = Math.cos(elapsedTime);
   // camera.lookAt(mesh.position);
+
+  gsap.to(mesh.rotation, {
+    y: elapsedTime * 2 * Math.PI
+  })
 
   // Render
   renderer.render(scene, camera)
