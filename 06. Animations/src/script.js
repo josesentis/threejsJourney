@@ -31,10 +31,23 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setSize(sizes.width, sizes.height)
 renderer.render(scene, camera)
 
+let time = Date.now();
+
 // Animations
 const tick = () => {
-  const time = Date.now();
-  console.log(time);
+  /*
+    The FPS of each computer are different so we need to normalize a value to animate items
+    We can't do something like:
+
+    mesh.rotation.y += 1;
+  */
+  const currentTime = Date.now();
+  const deltaTime = currentTime - time;
+  time = currentTime;
+
+  mesh.rotation.y += 0.001 * deltaTime;
+
+  renderer.render(scene, camera)
 
   window.requestAnimationFrame(tick);
 };
