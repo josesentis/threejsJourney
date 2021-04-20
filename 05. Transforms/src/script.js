@@ -21,6 +21,10 @@ scene.add(mesh)
 
 mesh.position.set(0.7, -0.6, 1)
 
+// Axis Helper
+const axisHelper = new THREE.AxisHelper(3)
+scene.add(axisHelper);
+
 /**
  * Sizes
  */
@@ -34,6 +38,7 @@ const sizes = {
  */
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height)
 camera.position.z = 3
+
 scene.add(camera)
 
 /**
