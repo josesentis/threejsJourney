@@ -55,19 +55,18 @@ const renderer = new THREE.WebGLRenderer({
 })
 renderer.setSize(sizes.width, sizes.height)
 
-// Animate
-// const clock = new THREE.Clock()
-
 const tick = () => {
-  // const elapsedTime = clock.getElapsedTime()
+  // Update camera on mouse move
+  // camera.position.x = cursor.x * 10;
+  // camera.position.y = cursor.y * 10;
+  // camera.lookAt(mesh.position);
 
-  // Update objects
-  // mesh.rotation.y = elapsedTime;
-
-  // Update camera
-  camera.position.x = cursor.x * 3;
+  // Rotate camera on mouse move
+  // To understand, use this link https://www.geogebra.org/m/pyPGsGVc
+  camera.position.x = Math.sin(cursor.x * Math.PI * 2) * 3;
+  camera.position.z = Math.cos(cursor.x * Math.PI * 2) * 3;
   camera.position.y = cursor.y * 3;
-  camera.lookAt(new THREE.Vector3())
+  camera.lookAt(mesh.position);
 
   // Render
   renderer.render(scene, camera)
