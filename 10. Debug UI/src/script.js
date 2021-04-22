@@ -58,7 +58,7 @@ controls.enableDamping = true;
 
 // Debug
 const debug = new dat.GUI();
-debug.add(mesh.position, 'x', -3, 3, 0.01); // min, max, step
+debug.add(mesh.position, 'x').min(-3).max(3).step(0.01).name('horizontal'); // min, max, step
 debug.add(mesh.position, 'y', -3, 3, 0.01); // min, max, step
 debug.add(mesh.position, 'z', -3, 3, 0.01); // min, max, step
 
