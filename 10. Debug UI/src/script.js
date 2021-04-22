@@ -7,6 +7,9 @@ import * as dat from 'dat.gui';
 /**
  * Base
  */
+const config = {
+  color: 0xff0000
+};
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
@@ -18,7 +21,7 @@ const scene = new THREE.Scene()
  * Object
  */
 const geometry = new THREE.BoxGeometry(1, 1, 1)
-const material = new THREE.MeshBasicMaterial({ color: 0xff0000 })
+const material = new THREE.MeshBasicMaterial({ color: config.color })
 const mesh = new THREE.Mesh(geometry, material)
 scene.add(mesh)
 
@@ -58,9 +61,17 @@ controls.enableDamping = true;
 
 // Debug
 const debug = new dat.GUI();
+
 debug.add(mesh.position, 'x').min(-3).max(3).step(0.01).name('horizontal'); // min, max, step
 debug.add(mesh.position, 'y', -3, 3, 0.01); // min, max, step
 debug.add(mesh.position, 'z', -3, 3, 0.01); // min, max, step
+
+debug.add(mesh, 'visible');
+// debug.add(mesh, 'wireframe');
+
+debug.addColor(config, 'color').onChange(() => {
+  material.color.set(config.color);
+});
 
 /**
  * Renderer
