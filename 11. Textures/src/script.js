@@ -37,14 +37,21 @@ loadingManager.onError = () => {
 const textureLoader = new THREE.TextureLoader(loadingManager);
 const texture = textureLoader.load('/textures/door/color.jpg');
 
+// texture.offset.x = 0.5;
+// texture.offset.y = 0.5;
+
+texture.rotation = Math.PI / 8;
+texture.center.x = 0.5;
+texture.center.y = 0.5;
+
 /**
  * Base
  */
 // Canvas
-const canvas = document.querySelector('canvas.webgl')
+const canvas = document.querySelector('canvas.webgl');
 
 // Scene
-const scene = new THREE.Scene()
+const scene = new THREE.Scene();
 
 /**
  * Object
