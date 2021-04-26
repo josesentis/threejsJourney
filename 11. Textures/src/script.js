@@ -35,7 +35,9 @@ loadingManager.onError = () => {
 };
 
 const textureLoader = new THREE.TextureLoader(loadingManager);
-const texture = textureLoader.load('/textures/checkerboard-1024x1024.png');
+// const texture = textureLoader.load('/textures/checkerboard-1024x1024.png');
+// const texture = textureLoader.load('/textures/checkerboard-8x8.png');
+const texture = textureLoader.load('/textures/minecraft.png');
 
 // texture.offset.x = 0.5;
 // texture.offset.y = 0.5;
@@ -44,7 +46,9 @@ const texture = textureLoader.load('/textures/checkerboard-1024x1024.png');
 // texture.center.x = 0.5;
 // texture.center.y = 0.5;
 
+texture.generateMipmaps = false;
 texture.minFilter = THREE.NearestFilter;
+texture.magFilter = THREE.NearestFilter;
 
 /**
  * Base
