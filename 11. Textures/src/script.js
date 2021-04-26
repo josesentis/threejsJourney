@@ -16,19 +16,26 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 // image.src = '/textures/door/color.jpg';
 
 // Using texture loader
-const textureLoader = new THREE.TextureLoader();
-const texture = textureLoader.load(
-  '/textures/door/color.jpg',
-  () => {
-    console.log('load');
-  },
-  () => {
-    console.log('progress');
-  },
-  () => {
-    console.log('error');
-  }
-);
+const loadingManager = new THREE.LoadingManager();
+
+loadingManager.onStart = () => {
+  console.log('On Start');
+};
+
+loadingManager.onProgress = progress => {
+  console.log('On Progress', progress);
+};
+
+loadingManager.onLoad = () => {
+  console.log('On Load');
+};
+
+loadingManager.onError = () => {
+  console.log('On Error');
+};
+
+const textureLoader = new THREE.TextureLoader(loadingManager);
+const texture = textureLoader.load('/textures/door/color.jpg');
 
 /**
  * Base
