@@ -6,9 +6,10 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
  * Textures
  */
 const image = new Image();
+const texture = new THREE.Texture(image);
 
 image.onload = () => {
-  console.log('Image loaded');
+  texture.needsUpdate = true;
 };
 
 image.src = '/textures/door/color.jpg';
@@ -26,7 +27,7 @@ const scene = new THREE.Scene()
  * Object
  */
 const geometry = new THREE.BoxGeometry(1, 1, 1)
-const material = new THREE.MeshBasicMaterial({ color: 0xff0000 })
+const material = new THREE.MeshBasicMaterial({ map: texture })
 const mesh = new THREE.Mesh(geometry, material)
 scene.add(mesh)
 
