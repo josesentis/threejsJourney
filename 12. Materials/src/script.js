@@ -7,15 +7,15 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
  */
 const textureLoader = new THREE.TextureLoader();
 
-const doorColorTexture = textureLoader.add('/textures/color.jpg');
-const alphaColorTexture = textureLoader.add('/textures/alpha.jpg');
-const ambientOcclusionColorTexture = textureLoader.add('/textures/ambientOcclusion.jpg');
-const heightColorTexture = textureLoader.add('/textures/height.jpg');
-const normalColorTexture = textureLoader.add('/textures/normal.jpg');
-const metalnessColorTexture = textureLoader.add('/textures/metalness.jpg');
-const roughnessColorTexture = textureLoader.add('/textures/roughness.jpg');
-const matcapTexture = textureLoader.add('/textures/matcaps/1.png');
-const gradientTexture = textureLoader.add('/textures/gradients/3.png');
+const doorColorTexture = textureLoader.load('/textures/door/color.jpg');
+const alphaColorTexture = textureLoader.load('/textures/door/alpha.jpg');
+const ambientOcclusionColorTexture = textureLoader.load('/textures/door/ambientOcclusion.jpg');
+const heightColorTexture = textureLoader.load('/textures/door/height.jpg');
+const normalColorTexture = textureLoader.load('/textures/door/normal.jpg');
+const metalnessColorTexture = textureLoader.load('/textures/door/metalness.jpg');
+const roughnessColorTexture = textureLoader.load('/textures/door/roughness.jpg');
+const matcapTexture = textureLoader.load('/textures/matcaps/1.png');
+const gradientTexture = textureLoader.load('/textures/gradients/3.jpg');
 
 /**
  * Base
@@ -29,8 +29,14 @@ const scene = new THREE.Scene()
 /**
  * Objects
  */
-
 const material = new THREE.MeshBasicMaterial();
+material.map = doorColorTexture;
+// material.color = new THREE.Color('yellow');
+// material.wireframe = true;
+// material.opacity = 0.5;
+material.transparent = true;
+material.alphaMap = alphaColorTexture;
+material.side = THREE.DoubleSide;
 
 const sphere = new THREE.Mesh(
   new THREE.SphereGeometry(0.5, 16, 16),
