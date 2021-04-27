@@ -69,9 +69,11 @@ material.roughness = 0.15;
 material.metalness = 0.25;
 material.map = doorColorTexture;
 material.aoMap = doorAmbientOcclusionColorTexture;
+material.aoMapIntensity = 1;
 
 debug.add(material, 'metalness').min(0).max(1).step(0.001);
 debug.add(material, 'roughness').min(0).max(1).step(0.001);
+debug.add(material, 'aoMapIntensity').min(0).max(10).step(1);
 
 const sphere = new THREE.Mesh(
   new THREE.SphereGeometry(0.5, 16, 16),
