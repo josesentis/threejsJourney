@@ -27,12 +27,12 @@ const gradientTexture = textureLoader.load('/textures/gradients/3.jpg');
 // gradientTexture.magFilter = THREE.NearestFilter;
 // gradientTexture.generateMipmaps = false;
 const environmentMapTexture = cubeTextureLoader.load([
-  '/textures/environmentMaps/3/px.jpg',
-  '/textures/environmentMaps/3/nx.jpg',
-  '/textures/environmentMaps/3/py.jpg',
-  '/textures/environmentMaps/3/ny.jpg',
-  '/textures/environmentMaps/3/pz.jpg',
-  '/textures/environmentMaps/3/nz.jpg',
+  '/textures/environmentMaps/0/px.jpg',
+  '/textures/environmentMaps/0/nx.jpg',
+  '/textures/environmentMaps/0/py.jpg',
+  '/textures/environmentMaps/0/ny.jpg',
+  '/textures/environmentMaps/0/pz.jpg',
+  '/textures/environmentMaps/0/nz.jpg',
 ]);
 
 /**
@@ -73,56 +73,58 @@ const scene = new THREE.Scene()
 // const material = new THREE.MeshToonMaterial();
 // material.gradientMap = gradientTexture;
 
-// const material = new THREE.MeshStandardMaterial();
+const material = new THREE.MeshStandardMaterial();
 // Shouldnt be combined with metal and rough map
 // material.roughness = 0.15;
 // material.metalness = 0.25;
 
-// material.map = doorColorTexture;
-// material.aoMap = doorAmbientOcclusionColorTexture;
-// material.aoMapIntensity = 1;
-// material.displacementMap = doorHeightColorTexture;
-// material.displacementScale = 0.05;
-// material.metalnessMap = doorMetalnessColorTexture;
-// material.roughnessMap = doorRoughnessColorTexture;
-// material.normalMap = doorNormalColorTexture;
-// material.alphaMap = doorAlphaColorTexture;
-// material.transparent = true;
+material.map = doorColorTexture;
+material.aoMap = doorAmbientOcclusionColorTexture;
+material.aoMapIntensity = 1;
+material.displacementMap = doorHeightColorTexture;
+material.displacementScale = 0.05;
+material.metalnessMap = doorMetalnessColorTexture;
+material.roughnessMap = doorRoughnessColorTexture;
+material.normalMap = doorNormalColorTexture;
+material.alphaMap = doorAlphaColorTexture;
+material.transparent = true;
+material.side = THREE.DoubleSide;
 
-const material = new THREE.MeshStandardMaterial();
-material.metalness = 0.7;
-material.roughness = 0.2;
-material.envMap = environmentMapTexture;
+// const material = new THREE.MeshStandardMaterial();
+// material.metalness = 0.7;
+// material.roughness = 0.2;
+// material.envMap = environmentMapTexture;
 
-debug.add(material, 'metalness').min(0).max(1).step(0.001);
-debug.add(material, 'roughness').min(0).max(1).step(0.001);
-debug.add(material, 'aoMapIntensity').min(0).max(10).step(1);
-debug.add(material, 'displacementScale').min(0).max(1).step(0.001);
+// debug.add(material, 'metalness').min(0).max(1).step(0.001);
+// debug.add(material, 'roughness').min(0).max(1).step(0.001);
+// debug.add(material, 'aoMapIntensity').min(0).max(10).step(1);
+// debug.add(material, 'displacementScale').min(0).max(1).step(0.001);
 
-const sphere = new THREE.Mesh(
-  new THREE.SphereGeometry(0.5, 64, 64),
-  material
-);
+// const sphere = new THREE.Mesh(
+//   new THREE.SphereGeometry(0.5, 64, 64),
+//   material
+// );
 
-sphere.position.x = -1.5;
+// sphere.position.x = -1.5;
 
 const plane = new THREE.Mesh(
   new THREE.PlaneGeometry(1, 1, 100, 100),
   material
 );
 
-const torus = new THREE.Mesh(
-  new THREE.TorusGeometry(0.5, 0.2, 64, 128),
-  material
-);
+// const torus = new THREE.Mesh(
+//   new THREE.TorusGeometry(0.5, 0.2, 64, 128),
+//   material
+// );
 
-torus.position.x = 1.5;
+// torus.position.x = 1.5;
 
-scene.add(sphere, plane, torus);
+scene.add(plane);
+// scene.add(sphere, plane, torus);
 
+// sphere.geometry.setAttribute('uv2', new THREE.BufferAttribute(sphere.geometry.attributes.uv.array, 2));
 plane.geometry.setAttribute('uv2', new THREE.BufferAttribute(plane.geometry.attributes.uv.array, 2));
-sphere.geometry.setAttribute('uv2', new THREE.BufferAttribute(sphere.geometry.attributes.uv.array, 2));
-torus.geometry.setAttribute('uv2', new THREE.BufferAttribute(torus.geometry.attributes.uv.array, 2));
+// torus.geometry.setAttribute('uv2', new THREE.BufferAttribute(torus.geometry.attributes.uv.array, 2));
 
 /**
  * Lights
