@@ -3,6 +3,21 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
 /**
+ * Textures
+ */
+const textureLoader = new THREE.TextureLoader();
+
+const doorColorTexture = textureLoader.add('/textures/color.jpg');
+const alphaColorTexture = textureLoader.add('/textures/alpha.jpg');
+const ambientOcclusionColorTexture = textureLoader.add('/textures/ambientOcclusion.jpg');
+const heightColorTexture = textureLoader.add('/textures/height.jpg');
+const normalColorTexture = textureLoader.add('/textures/normal.jpg');
+const metalnessColorTexture = textureLoader.add('/textures/metalness.jpg');
+const roughnessColorTexture = textureLoader.add('/textures/roughness.jpg');
+const matcapTexture = textureLoader.add('/textures/matcaps/1.png');
+const gradientTexture = textureLoader.add('/textures/gradients/3.png');
+
+/**
  * Base
  */
 // Canvas
@@ -58,7 +73,7 @@ window.addEventListener('resize', () => {
   // Update renderer
   renderer.setSize(sizes.width, sizes.height)
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-})
+});
 
 /**
  * Camera
@@ -90,6 +105,15 @@ const clock = new THREE.Clock()
 
 const tick = () => {
   const elapsedTime = clock.getElapsedTime()
+
+  // Animate objects
+  sphere.rotation.y = 0.1 * elapsedTime;
+  plane.rotation.y = 0.1 * elapsedTime;
+  torus.rotation.y = 0.1 * elapsedTime;
+
+  sphere.rotation.x = 0.2 * elapsedTime;
+  plane.rotation.x = 0.2 * elapsedTime;
+  torus.rotation.x = 0.2 * elapsedTime;
 
   // Update controls
   controls.update()
