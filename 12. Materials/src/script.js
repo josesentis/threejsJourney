@@ -12,6 +12,7 @@ const debug = new dat.GUI();
  * Textures
  */
 const textureLoader = new THREE.TextureLoader();
+const cubeTextureLoader = new THREE.CubeTextureLoader();
 
 const doorColorTexture = textureLoader.load('/textures/door/color.jpg');
 const doorAlphaColorTexture = textureLoader.load('/textures/door/alpha.jpg');
@@ -25,6 +26,14 @@ const gradientTexture = textureLoader.load('/textures/gradients/3.jpg');
 // gradientTexture.minFilter = THREE.NearestFilter;
 // gradientTexture.magFilter = THREE.NearestFilter;
 // gradientTexture.generateMipmaps = false;
+const environmentMapTexture = cubeTextureLoader.load([
+  '/textures/environmentMaps/3/px.jpg',
+  '/textures/environmentMaps/3/nx.jpg',
+  '/textures/environmentMaps/3/py.jpg',
+  '/textures/environmentMaps/3/ny.jpg',
+  '/textures/environmentMaps/3/pz.jpg',
+  '/textures/environmentMaps/3/nz.jpg',
+]);
 
 /**
  * Base
@@ -64,21 +73,26 @@ const scene = new THREE.Scene()
 // const material = new THREE.MeshToonMaterial();
 // material.gradientMap = gradientTexture;
 
-const material = new THREE.MeshStandardMaterial();
+// const material = new THREE.MeshStandardMaterial();
 // Shouldnt be combined with metal and rough map
 // material.roughness = 0.15;
 // material.metalness = 0.25;
 
-material.map = doorColorTexture;
-material.aoMap = doorAmbientOcclusionColorTexture;
-material.aoMapIntensity = 1;
-material.displacementMap = doorHeightColorTexture;
-material.displacementScale = 0.05;
-material.metalnessMap = doorMetalnessColorTexture;
-material.roughnessMap = doorRoughnessColorTexture;
-material.normalMap = doorNormalColorTexture;
-material.alphaMap = doorAlphaColorTexture;
-material.transparent = true;
+// material.map = doorColorTexture;
+// material.aoMap = doorAmbientOcclusionColorTexture;
+// material.aoMapIntensity = 1;
+// material.displacementMap = doorHeightColorTexture;
+// material.displacementScale = 0.05;
+// material.metalnessMap = doorMetalnessColorTexture;
+// material.roughnessMap = doorRoughnessColorTexture;
+// material.normalMap = doorNormalColorTexture;
+// material.alphaMap = doorAlphaColorTexture;
+// material.transparent = true;
+
+const material = new THREE.MeshStandardMaterial();
+material.metalness = 0.7;
+material.roughness = 0.2;
+material.envMap = environmentMapTexture;
 
 debug.add(material, 'metalness').min(0).max(1).step(0.001);
 debug.add(material, 'roughness').min(0).max(1).step(0.001);
@@ -176,13 +190,13 @@ const tick = () => {
   const elapsedTime = clock.getElapsedTime()
 
   // Animate objects
-  sphere.rotation.y = 0.1 * elapsedTime;
-  plane.rotation.y = 0.1 * elapsedTime;
-  torus.rotation.y = 0.1 * elapsedTime;
+  // sphere.rotation.y = 0.1 * elapsedTime;
+  // plane.rotation.y = 0.1 * elapsedTime;
+  // torus.rotation.y = 0.1 * elapsedTime;
 
-  sphere.rotation.x = 0.2 * elapsedTime;
-  plane.rotation.x = 0.2 * elapsedTime;
-  torus.rotation.x = 0.2 * elapsedTime;
+  // sphere.rotation.x = 0.15 * elapsedTime;
+  // plane.rotation.x = 0.15 * elapsedTime;
+  // torus.rotation.x = 0.15 * elapsedTime;
 
   // Update controls
   controls.update()
