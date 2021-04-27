@@ -22,7 +22,21 @@ const sphere = new THREE.Mesh(
   material
 );
 
-scene.add(sphere);
+sphere.position.x = -1.5;
+
+const plane = new THREE.Mesh(
+  new THREE.PlaneGeometry(1, 1),
+  material
+);
+
+const torus = new THREE.Mesh(
+  new THREE.TorusGeometry(0.5, 0.2, 16, 32),
+  material
+);
+
+torus.position.x = 1.5;
+
+scene.add(sphere, plane, torus);
 
 /**
  * Sizes
