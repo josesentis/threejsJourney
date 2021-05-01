@@ -33,12 +33,12 @@ fontLoader.load('/fonts/avenir-regular-pro.json', font => {
       font,
       size: 0.5,
       height: 0.2,
-      cuverSegments: 12,
+      cuverSegments: 5,
       bevelEnabled: true,
       bevelThickness: 0.03,
       bevelSize: 0.02,
       bevelOffset: 0,
-      bevelSegments: 5
+      bevelSegments: 4
     }
   );
 
@@ -46,7 +46,7 @@ fontLoader.load('/fonts/avenir-regular-pro.json', font => {
   const textMesh = new THREE.Mesh(textGeometry, textMaterial);
   scene.add(textMesh);
 
-  textMesh.wireframe = true;
+  textMaterial.wireframe = true;
 })
 
 /**
