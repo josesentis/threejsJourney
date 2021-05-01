@@ -13,7 +13,11 @@ const gui = new dat.GUI()
 const canvas = document.querySelector('canvas.webgl')
 
 // Scene
-const scene = new THREE.Scene()
+const scene = new THREE.Scene();
+
+// Axis helper
+const axisHelper = new THREE.AxisHelper();
+scene.add(axisHelper);
 
 /**
  * Textures
@@ -33,7 +37,7 @@ fontLoader.load('/fonts/avenir-regular-pro.json', font => {
       font,
       size: 0.5,
       height: 0.2,
-      cuverSegments: 5,
+      cuverSegments: 4,
       bevelEnabled: true,
       bevelThickness: 0.03,
       bevelSize: 0.02,
@@ -42,11 +46,23 @@ fontLoader.load('/fonts/avenir-regular-pro.json', font => {
     }
   );
 
-  const textMaterial = new THREE.MeshBasicMaterial();
-  const textMesh = new THREE.Mesh(textGeometry, textMaterial);
-  scene.add(textMesh);
+  textGeometry.computeBoundingBox();
+  console.log(textGeometry.boundingBox);
 
+  textGeometry.translate(
+    - (textGeometry.boundingBox.max.x - 0.02) * 0.5,
+    - (textGeometry.boundingBox.max.y - 0.02) * 0.5,
+    - (textGeometry.boundingBox.max.z - 0.03) * 0.5
+  );
+
+  textGeometry.computeBoundingBox();
+  console.log(textGeometry.boundingBox);
+
+  const textMaterial = new THREE.MeshBasicMaterial();
   textMaterial.wireframe = true;
+  const textMesh = new THREE.Mesh(textGeometry, textMaterial);
+
+  scene.add(textMesh);
 })
 
 /**
