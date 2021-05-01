@@ -46,15 +46,16 @@ fontLoader.load('/fonts/avenir-regular-pro.json', font => {
     }
   );
 
-  textGeometry.computeBoundingBox();
-  console.log(textGeometry.boundingBox);
+  // textGeometry.computeBoundingBox();
+  // console.log(textGeometry.boundingBox);
 
-  textGeometry.translate(
-    - (textGeometry.boundingBox.max.x - 0.02) * 0.5,
-    - (textGeometry.boundingBox.max.y - 0.02) * 0.5,
-    - (textGeometry.boundingBox.max.z - 0.03) * 0.5
-  );
+  // textGeometry.translate(
+  //   - (textGeometry.boundingBox.max.x - 0.02) * 0.5,
+  //   - (textGeometry.boundingBox.max.y - 0.02) * 0.5,
+  //   - (textGeometry.boundingBox.max.z - 0.03) * 0.5
+  // );
 
+  textGeometry.center();
   textGeometry.computeBoundingBox();
   console.log(textGeometry.boundingBox);
 
