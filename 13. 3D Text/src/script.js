@@ -2,6 +2,7 @@ import './style.css'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import * as dat from 'dat.gui'
+import { Texture } from 'three'
 
 /**
  * Base
@@ -16,21 +17,20 @@ const canvas = document.querySelector('canvas.webgl')
 const scene = new THREE.Scene();
 
 // Axis helper
-const axisHelper = new THREE.AxisHelper();
-scene.add(axisHelper);
+const axesHelper = new THREE.AxesHelper();
+scene.add(axesHelper);
 
 /**
  * Textures
  */
-const textureLoader = new THREE.TextureLoader()
+const textureLoader = new THREE.TextureLoader();
+const matcapTexture = textureLoader.load('/textures/matcaps/1.png');
 
 /**
  * Fonts
  */
 const fontLoader = new THREE.FontLoader();
 fontLoader.load('/fonts/avenir-regular-pro.json', font => {
-  console.log('Font loaded!');
-
   const textGeometry = new THREE.TextGeometry(
     'Hello Three.js',
     {
@@ -56,13 +56,11 @@ fontLoader.load('/fonts/avenir-regular-pro.json', font => {
   // );
 
   textGeometry.center();
-  textGeometry.computeBoundingBox();
-  console.log(textGeometry.boundingBox);
-
-  const textMaterial = new THREE.MeshBasicMaterial();
-  textMaterial.wireframe = true;
+  const textMaterial = new THREE.MeshMatcapMaterial({
+    matcap: matcapTexture
+  });
+  // textMaterial.wireframe = true;
   const textMesh = new THREE.Mesh(textGeometry, textMaterial);
-
   scene.add(textMesh);
 })
 
