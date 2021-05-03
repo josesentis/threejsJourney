@@ -68,8 +68,13 @@ fontLoader.load('/fonts/avenir-regular-pro.json', font => {
     const donutMaterial = new THREE.MeshMatcapMaterial({
       matcap: matcapTexture
     });
-    const donutMesh = new THREE.Mesh(donutGeometry, donutMaterial);
-    scene.add(donutMesh);
+    const donut = new THREE.Mesh(donutGeometry, donutMaterial);
+
+    donut.position.x = (Math.random() - 0.5) * 10;
+    donut.position.y = (Math.random() - 0.5) * 10;
+    donut.position.z = (Math.random() - 0.5) * 10;
+
+    scene.add(donut);
   }
 })
 
