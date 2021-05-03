@@ -24,13 +24,13 @@ scene.add(axesHelper);
  * Textures
  */
 const textureLoader = new THREE.TextureLoader();
-const matcapTexture = textureLoader.load('/textures/matcaps/1.png');
+const matcapTexture = textureLoader.load('/textures/matcaps/7.png');
 
 /**
  * Fonts
  */
 const fontLoader = new THREE.FontLoader();
-fontLoader.load('/fonts/avenir-regular-pro.json', font => {
+fontLoader.load('/fonts/helvetiker_regular.typeface.json', font => {
   const textGeometry = new THREE.TextGeometry(
     'Hello Three.js',
     {
@@ -56,20 +56,17 @@ fontLoader.load('/fonts/avenir-regular-pro.json', font => {
   // );
 
   textGeometry.center();
-  const textMaterial = new THREE.MeshMatcapMaterial({
+  const material = new THREE.MeshMatcapMaterial({
     matcap: matcapTexture
   });
   // textMaterial.wireframe = true;
-  const textMesh = new THREE.Mesh(textGeometry, textMaterial);
+  const textMesh = new THREE.Mesh(textGeometry, material);
   scene.add(textMesh);
 
   const donutGeometry = new THREE.TorusGeometry(0.3, 0.2, 20, 45);
-  const donutMaterial = new THREE.MeshMatcapMaterial({
-    matcap: matcapTexture
-  });
 
   for (let i = 0; i <= 1000; i++) {
-    const donut = new THREE.Mesh(donutGeometry, donutMaterial);
+    const donut = new THREE.Mesh(donutGeometry, material);
 
     donut.position.x = (Math.random() - 0.5) * 20;
     donut.position.y = (Math.random() - 0.5) * 20;
