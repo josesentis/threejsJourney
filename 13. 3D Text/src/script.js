@@ -17,8 +17,8 @@ const canvas = document.querySelector('canvas.webgl')
 const scene = new THREE.Scene();
 
 // Axis helper
-const axesHelper = new THREE.AxesHelper();
-scene.add(axesHelper);
+// const axesHelper = new THREE.AxesHelper();
+// scene.add(axesHelper);
 
 /**
  * Textures
@@ -65,7 +65,7 @@ fontLoader.load('/fonts/helvetiker_regular.typeface.json', font => {
 
   const donutGeometry = new THREE.TorusGeometry(0.3, 0.2, 20, 45);
 
-  for (let i = 0; i <= 1000; i++) {
+  for (let i = 0; i <= 300; i++) {
     const donut = new THREE.Mesh(donutGeometry, material);
 
     donut.position.x = (Math.random() - 0.5) * 20;
