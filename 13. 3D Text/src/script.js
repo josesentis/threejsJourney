@@ -62,6 +62,15 @@ fontLoader.load('/fonts/avenir-regular-pro.json', font => {
   // textMaterial.wireframe = true;
   const textMesh = new THREE.Mesh(textGeometry, textMaterial);
   scene.add(textMesh);
+
+  for (let i = 0; i <= 100; i++) {
+    const donutGeometry = new THREE.TorusGeometry(0.3, 0.2, 20, 45);
+    const donutMaterial = new THREE.MeshMatcapMaterial({
+      matcap: matcapTexture
+    });
+    const donutMesh = new THREE.Mesh(donutGeometry, donutMaterial);
+    scene.add(donutMesh);
+  }
 })
 
 /**
