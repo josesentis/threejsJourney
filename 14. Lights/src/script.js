@@ -24,8 +24,11 @@ ambientLight.color = new THREE.Color(0xFFFFFF);
 ambientLight.intensity = 0.5;
 scene.add(ambientLight);
 
-gui.add(ambientLight, 'intensity').min(0).max(1).step(0.05);
+const directionalLight = new THREE.DirectionalLight(0x00FFFC, 0.3);
+scene.add(directionalLight);
 
+gui.add(ambientLight, 'intensity').min(0).max(1).step(0.01);
+gui.add(directionalLight, 'intensity').min(0).max(1).step(0.01);
 /**
  * Objects
  */
