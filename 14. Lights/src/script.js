@@ -40,9 +40,11 @@ pointLight.position.set(1, -0.5, 1);
 
 gui.add(pointLight, 'decay').min(0).max(10).step(1).name('Point decay');
 
-const rectAreaLight = new THREE.RectAreaLight(0x4E00FF, 2, 1, 1);
+const rectAreaLight = new THREE.RectAreaLight(0x4E00FF, 10, 1, 1);
 // rectAreaLight.position.set(0, 0, -1);
+rectAreaLight.position.y = 1;
 rectAreaLight.position.z = 2;
+rectAreaLight.lookAt(new THREE.Vector3(0, 0, 0));
 
 gui.add(rectAreaLight, 'intensity').min(0).max(10).step(0.5).name('React area L intensity');
 gui.add(rectAreaLight.position, 'x').min(-3).max(3).step(0.5).name('React area x');
