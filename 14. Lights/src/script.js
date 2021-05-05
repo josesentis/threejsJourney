@@ -2,6 +2,7 @@ import './style.css'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import * as dat from 'dat.gui'
+import { RectAreaLightHelper } from 'three/examples/jsm/helpers/RectAreaLightHelper';
 
 /**
  * Base
@@ -46,7 +47,7 @@ rectAreaLight.position.x = -1;
 rectAreaLight.position.y = 1;
 rectAreaLight.position.z = 2;
 rectAreaLight.lookAt(new THREE.Vector3(0, 0, 0));
-// scene.add(rectAreaLight);
+scene.add(rectAreaLight);
 
 gui.add(rectAreaLight, 'intensity').min(0).max(10).step(0.5).name('React area L intensity');
 gui.add(rectAreaLight.position, 'x').min(-3).max(3).step(0.5).name('React area x');
@@ -66,8 +67,19 @@ scene.add(spotLight.target);
 // const hemisphereLightHelper = new THREE.HemisphereLightHelper(hemisphereLight, 0.2);
 // scene.add(hemisphereLightHelper);
 
-const directionalLightHelper = new THREE.DirectionalLightHelper(directionalLight, 0.2);
-scene.add(directionalLightHelper);
+// const directionalLightHelper = new THREE.DirectionalLightHelper(directionalLight, 0.2);
+// scene.add(directionalLightHelper);
+
+// const spotLightHelper = new THREE.SpotLightHelper(spotLight);
+// scene.add(spotLightHelper);
+
+// window.requestAnimationFrame(() => {
+//   // Spotlight helper needs to be updated here;
+//   spotLightHelper.update();
+// });
+
+const rectAreaLightHelper = new RectAreaLightHelper(rectAreaLight);
+scene.add(rectAreaLightHelper);
 
 /**
  * Objects
