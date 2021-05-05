@@ -42,16 +42,25 @@ gui.add(pointLight, 'decay').min(0).max(10).step(1).name('Point decay');
 
 const rectAreaLight = new THREE.RectAreaLight(0x4E00FF, 10, 1, 1);
 // rectAreaLight.position.set(0, 0, -1);
+rectAreaLight.position.x = -1;
 rectAreaLight.position.y = 1;
 rectAreaLight.position.z = 2;
 rectAreaLight.lookAt(new THREE.Vector3(0, 0, 0));
+// scene.add(rectAreaLight);
 
 gui.add(rectAreaLight, 'intensity').min(0).max(10).step(0.5).name('React area L intensity');
 gui.add(rectAreaLight.position, 'x').min(-3).max(3).step(0.5).name('React area x');
 gui.add(rectAreaLight.position, 'y').min(-3).max(3).step(0.5).name('React area y');
 gui.add(rectAreaLight.position, 'z').min(-3).max(3).step(0.5).name('React area z');
 
-scene.add(rectAreaLight);
+const spotLight = new THREE.SpotLight(0x78FF00, 0.5, 10, Math.PI * 0.1, 0.25, 1);
+spotLight.position.set(0, 2, 3);
+scene.add(spotLight);
+
+// In this case we can't point to some coords with lookAt.
+// SpotLight has a target inside that needs to be moved around
+spotLight.target.position.x = -0.75;
+scene.add(spotLight.target);
 
 /**
  * Objects
