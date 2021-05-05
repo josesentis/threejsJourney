@@ -26,7 +26,7 @@ ambientLight.intensity = 0.5;
 
 const directionalLight = new THREE.DirectionalLight(0x00FFFC, 0.3);
 directionalLight.position.set(1, 0.25, 0);
-// scene.add(directionalLight);
+scene.add(directionalLight);
 
 gui.add(ambientLight, 'intensity').min(0).max(1).step(0.01).name('Ambient Intensity');
 gui.add(directionalLight, 'intensity').min(0).max(1).step(0.01).name('Directional Intensity');
@@ -55,12 +55,19 @@ gui.add(rectAreaLight.position, 'z').min(-3).max(3).step(0.5).name('React area z
 
 const spotLight = new THREE.SpotLight(0x78FF00, 0.5, 10, Math.PI * 0.1, 0.25, 1);
 spotLight.position.set(0, 2, 3);
-scene.add(spotLight);
+// scene.add(spotLight);
 
 // In this case we can't point to some coords with lookAt.
 // SpotLight has a target inside that needs to be moved around
 spotLight.target.position.x = -0.75;
 scene.add(spotLight.target);
+
+// Helpers
+// const hemisphereLightHelper = new THREE.HemisphereLightHelper(hemisphereLight, 0.2);
+// scene.add(hemisphereLightHelper);
+
+const directionalLightHelper = new THREE.DirectionalLightHelper(directionalLight, 0.2);
+scene.add(directionalLightHelper);
 
 /**
  * Objects
