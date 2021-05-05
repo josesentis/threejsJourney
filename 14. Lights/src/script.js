@@ -25,10 +25,15 @@ ambientLight.intensity = 0.5;
 scene.add(ambientLight);
 
 const directionalLight = new THREE.DirectionalLight(0x00FFFC, 0.3);
+directionalLight.position.set(1, 0.25, 0);
 scene.add(directionalLight);
 
-gui.add(ambientLight, 'intensity').min(0).max(1).step(0.01);
-gui.add(directionalLight, 'intensity').min(0).max(1).step(0.01);
+gui.add(ambientLight, 'intensity').min(0).max(1).step(0.01).name('Ambient intensity');
+gui.add(directionalLight, 'intensity').min(0).max(1).step(0.01).name('Directional intensity');
+
+const hemisphereLight = new THREE.HemisphereLight(0xFF0000, 0x0000FF, 0.5);
+scene.add(hemisphereLight);
+
 /**
  * Objects
  */
