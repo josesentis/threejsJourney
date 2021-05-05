@@ -22,23 +22,34 @@ const scene = new THREE.Scene()
 const ambientLight = new THREE.AmbientLight();
 ambientLight.color = new THREE.Color(0xFFFFFF);
 ambientLight.intensity = 0.5;
-scene.add(ambientLight);
+// scene.add(ambientLight);
 
 const directionalLight = new THREE.DirectionalLight(0x00FFFC, 0.3);
 directionalLight.position.set(1, 0.25, 0);
-scene.add(directionalLight);
+// scene.add(directionalLight);
 
 gui.add(ambientLight, 'intensity').min(0).max(1).step(0.01).name('Ambient Intensity');
 gui.add(directionalLight, 'intensity').min(0).max(1).step(0.01).name('Directional Intensity');
 
 const hemisphereLight = new THREE.HemisphereLight(0xFF0000, 0x0000FF, 0.5);
-scene.add(hemisphereLight);
+// scene.add(hemisphereLight);
 
 const pointLight = new THREE.PointLight(0xFF9000, 0.5, 10, 2);
 pointLight.position.set(1, -0.5, 1);
-scene.add(pointLight);
+// scene.add(pointLight);
 
 gui.add(pointLight, 'decay').min(0).max(10).step(1).name('Point decay');
+
+const rectAreaLight = new THREE.RectAreaLight(0x4E00FF, 2, 1, 1);
+// rectAreaLight.position.set(0, 0, -1);
+rectAreaLight.position.z = 2;
+
+gui.add(rectAreaLight, 'intensity').min(0).max(10).step(0.5).name('React area L intensity');
+gui.add(rectAreaLight.position, 'x').min(-3).max(3).step(0.5).name('React area x');
+gui.add(rectAreaLight.position, 'y').min(-3).max(3).step(0.5).name('React area y');
+gui.add(rectAreaLight.position, 'z').min(-3).max(3).step(0.5).name('React area z');
+
+scene.add(rectAreaLight);
 
 /**
  * Objects
