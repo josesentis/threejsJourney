@@ -56,7 +56,7 @@ gui.add(rectAreaLight.position, 'z').min(-3).max(3).step(0.5).name('React area z
 
 const spotLight = new THREE.SpotLight(0x78FF00, 0.5, 10, Math.PI * 0.1, 0.25, 1);
 spotLight.position.set(0, 2, 3);
-// scene.add(spotLight);
+scene.add(spotLight);
 
 // In this case we can't point to some coords with lookAt.
 // SpotLight has a target inside that needs to be moved around
@@ -70,13 +70,13 @@ scene.add(spotLight.target);
 // const directionalLightHelper = new THREE.DirectionalLightHelper(directionalLight, 0.2);
 // scene.add(directionalLightHelper);
 
-// const spotLightHelper = new THREE.SpotLightHelper(spotLight);
-// scene.add(spotLightHelper);
+const spotLightHelper = new THREE.SpotLightHelper(spotLight);
+scene.add(spotLightHelper);
 
-// window.requestAnimationFrame(() => {
-//   // Spotlight helper needs to be updated here;
-//   spotLightHelper.update();
-// });
+window.requestAnimationFrame(() => {
+  // Spotlight helper needs to be updated here;
+  spotLightHelper.update();
+});
 
 const rectAreaLightHelper = new RectAreaLightHelper(rectAreaLight);
 scene.add(rectAreaLightHelper);
