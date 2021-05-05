@@ -34,6 +34,10 @@ gui.add(directionalLight, 'intensity').min(0).max(1).step(0.01).name('Directiona
 const hemisphereLight = new THREE.HemisphereLight(0xFF0000, 0x0000FF, 0.5);
 scene.add(hemisphereLight);
 
+const pointLight = new THREE.PointLight(0xFF9000, 0.5);
+pointLight.position.set(1, -0.5, 1);
+scene.add(pointLight);
+
 /**
  * Objects
  */
