@@ -28,15 +28,17 @@ const directionalLight = new THREE.DirectionalLight(0x00FFFC, 0.3);
 directionalLight.position.set(1, 0.25, 0);
 scene.add(directionalLight);
 
-gui.add(ambientLight, 'intensity').min(0).max(1).step(0.01).name('Ambient intensity');
-gui.add(directionalLight, 'intensity').min(0).max(1).step(0.01).name('Directional intensity');
+gui.add(ambientLight, 'intensity').min(0).max(1).step(0.01).name('Ambient Intensity');
+gui.add(directionalLight, 'intensity').min(0).max(1).step(0.01).name('Directional Intensity');
 
 const hemisphereLight = new THREE.HemisphereLight(0xFF0000, 0x0000FF, 0.5);
 scene.add(hemisphereLight);
 
-const pointLight = new THREE.PointLight(0xFF9000, 0.5);
+const pointLight = new THREE.PointLight(0xFF9000, 0.5, 10, 2);
 pointLight.position.set(1, -0.5, 1);
 scene.add(pointLight);
+
+gui.add(pointLight, 'decay').min(0).max(10).step(1).name('Point decay');
 
 /**
  * Objects
