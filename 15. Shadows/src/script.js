@@ -68,11 +68,16 @@ scene.add(spotLightCameraHelper);
 // Point light
 const pointLight = new THREE.PointLight(0xFFFFFF, 0.3);
 pointLight.castShadow = true;
-spotLight.position.set(-1, 1, 0);
-scene.add(spotLight);
+pointLight.shadow.height = 1024;
+pointLight.shadow.width = 1024;
+pointLight.shadow.camera.near = 0.1;
+pointLight.shadow.camera.far = 5;
+
+pointLight.position.set(-1, 1, 0);
+scene.add(pointLight);
 
 const pointLightCameraHelper = new THREE.CameraHelper(pointLight.shadow.camera);
-// pointLightCameraHelper.visible = false;
+pointLightCameraHelper.visible = false;
 scene.add(pointLightCameraHelper);
 
 /**
