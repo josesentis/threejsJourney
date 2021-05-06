@@ -104,23 +104,38 @@ const sphere = new THREE.Mesh(
 )
 sphere.castShadow = true;
 
+// Uses baked shadow strategy 1
 // const plane = new THREE.Mesh(
 //   new THREE.PlaneGeometry(5, 5),
-//   material
+//   new THREE.MeshBasicMaterial({
+//     map: bakedShadow
+//   })
 // )
-
-// Uses baked shadoe
 const plane = new THREE.Mesh(
   new THREE.PlaneGeometry(5, 5),
-  new THREE.MeshBasicMaterial({
-    map: bakedShadow
-  })
+  material
 )
 plane.rotation.x = - Math.PI * 0.5
 plane.position.y = - 0.5
 plane.receiveShadow = true;
 
 scene.add(sphere, plane)
+
+// Strategy 3 for shadows
+// Uses an image as alpha map
+const sphereShadow = new THREE.Mesh(
+  new THREE.PlaneGeometry(1.5, 1.5),
+  new THREE.MeshBasicMaterial({
+    color: 0x000000,
+    transparent: true,
+    alphaMap: simpleShadow
+  })
+);
+
+sphereShadow.rotation.x = - Math.PI * 0.5
+sphereShadow.position.y = plane.position.y + 0.01
+
+scene.add(sphereShadow);
 
 /**
  * Sizes
