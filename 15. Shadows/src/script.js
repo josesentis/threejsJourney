@@ -35,6 +35,10 @@ scene.add(directionalLight)
 
 directionalLight.shadow.height = 1024;
 directionalLight.shadow.width = 1024;
+directionalLight.shadow.camera.top = 2;
+directionalLight.shadow.camera.right = 2;
+directionalLight.shadow.camera.bottom = -2;
+directionalLight.shadow.camera.left = -2;
 directionalLight.shadow.camera.near = 1;
 directionalLight.shadow.camera.far = 6;
 
