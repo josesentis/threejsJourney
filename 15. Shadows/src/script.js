@@ -16,6 +16,13 @@ const canvas = document.querySelector('canvas.webgl')
 const scene = new THREE.Scene()
 
 /**
+ * Textures
+ */
+const textureLoader = new THREE.TextureLoader();
+const bakedShadow = textureLoader.load('/textures/bakedShadow.jpg');
+const simpleShadow = textureLoader.load('/textures/simpleShadow.jpg');
+
+/**
  * Lights
  */
 // Ambient light
@@ -97,9 +104,17 @@ const sphere = new THREE.Mesh(
 )
 sphere.castShadow = true;
 
+// const plane = new THREE.Mesh(
+//   new THREE.PlaneGeometry(5, 5),
+//   material
+// )
+
+// Uses baked shadoe
 const plane = new THREE.Mesh(
   new THREE.PlaneGeometry(5, 5),
-  material
+  new THREE.MeshBasicMaterial({
+    map: bakedShadow
+  })
 )
 plane.rotation.x = - Math.PI * 0.5
 plane.position.y = - 0.5
