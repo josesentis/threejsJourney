@@ -198,6 +198,11 @@ const tick = () => {
   sphere.position.y = Math.abs(Math.sin(elapsedTime * 3));
   sphere.position.z = Math.sin(elapsedTime) * 1.5;
 
+  // Update the shadow
+  sphereShadow.position.x = sphere.position.x;
+  sphereShadow.position.z = sphere.position.z;
+  sphereShadow.material.opacity = (1 - sphere.position.y) * 0.3;
+
   // Update controls
   controls.update()
 
