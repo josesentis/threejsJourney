@@ -102,14 +102,17 @@ for (let i = 0; i < 30; i++) {
   const angle = Math.random() * Math.PI * 2;
   const radius = 4 + Math.random() * 5.5;
   const x = Math.sin(angle) * radius;
+  const y = 0.3 + Math.random() * 0.1;
   const z = Math.cos(angle) * radius;
+  const rotation = (Math.random() - 0.5) * Math.PI * 0.1;
 
   const crossPart1 = new THREE.Mesh(crossVerticalGeometry, graveMaterial);
   const crossPart2 = new THREE.Mesh(crossHorizontalGeometry, graveMaterial);
   crossPart2.position.y = 0.1;
 
   const cross = new THREE.Group();
-  cross.position.set(x, 0, z);
+  cross.position.set(x, y, z);
+  cross.rotation.z = rotation;
   cross.add(crossPart1, crossPart2);
 
   graves.add(cross);
