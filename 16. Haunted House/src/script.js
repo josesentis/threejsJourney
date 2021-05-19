@@ -98,7 +98,7 @@ const crossVerticalGeometry = new THREE.BoxGeometry(0.2, 0.8, 0.2);
 const crossHorizontalGeometry = new THREE.BoxGeometry(0.6, 0.2, 0.3);
 
 // Adds crosses
-for (let i = 0; i < 20; i++) {
+for (let i = 0; i < 30; i++) {
   const angle = Math.random() * Math.PI * 2;
   const radius = 4 + Math.random() * 5.5;
   const x = Math.sin(angle) * radius;
@@ -109,21 +109,24 @@ for (let i = 0; i < 20; i++) {
   crossPart2.position.y = 0.1;
 
   const cross = new THREE.Group();
-  cross.position.set(x, 0.4, z);
+  cross.position.set(x, 0, z);
   cross.add(crossPart1, crossPart2);
 
   graves.add(cross);
 }
 
 // Adds graves
-for (let i = 0; i < 50; i++) {
+for (let i = 0; i < 30; i++) {
+  const angle = Math.random() * Math.PI * 2;
+  const radius = 4 + Math.random() * 5.5;
+  const x = Math.sin(angle) * radius;
+  const z = Math.cos(angle) * radius;
+
   const grave = new THREE.Mesh(
     graveGeometry,
     graveMaterial
   );
-  grave.position.y = 0.4;
-  // grave.position.z = 6;
-  // grave.position.x = i * 0.1;
+  grave.position.set(x, 0, z);
 
   graves.add(grave);
 }
