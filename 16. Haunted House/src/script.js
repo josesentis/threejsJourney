@@ -28,10 +28,19 @@ scene.add(house);
 
 const walls = new THREE.Mesh(
   new THREE.BoxGeometry(2.5, 3, 2.5),
-  new THREE.MeshStandardMaterial({})
+  new THREE.MeshStandardMaterial({ color: 0x00FF00 })
 )
 walls.position.y = 3 / 2;
 house.add(walls);
+
+const roof = new THREE.Mesh(
+  new THREE.ConeGeometry(2.5, 2, 4),
+  new THREE.MeshStandardMaterial({ color: 0xFF0000 })
+);
+roof.position.y = 2 / 2 + 3;
+roof.rotation.y = Math.PI / 4;
+house.add(roof);
+
 
 // Floor
 const floor = new THREE.Mesh(
