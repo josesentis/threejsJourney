@@ -18,7 +18,7 @@ const scene = new THREE.Scene()
 /**
  * Textures
  */
-const textureLoader = new THREE.TextureLoader()
+const textureLoader = new THREE.TextureLoader();
 
 /**
  * House
@@ -27,17 +27,27 @@ const house = new THREE.Group();
 scene.add(house);
 
 const walls = new THREE.Mesh(
-  new THREE.BoxGeometry(2.5, 3, 2.5),
-  new THREE.MeshStandardMaterial({ color: 0x00FF00 })
+  new THREE.BoxGeometry(4, 3, 4),
+  new THREE.MeshStandardMaterial({ color: '#ac8e82' })
 )
 walls.position.y = 3 / 2;
 house.add(walls);
 
+// Wall
+const door = new THREE.Mesh(
+  new THREE.PlaneGeometry(1, 2, 32, 32),
+  new THREE.MeshStandardMaterial({ color: '#aa7b7b' })
+)
+door.position.y = 2 / 2;
+door.position.z = 4 / 2 + 0.01;
+house.add(door);
+
+// Roof
 const roof = new THREE.Mesh(
-  new THREE.ConeGeometry(2.5, 2, 4),
-  new THREE.MeshStandardMaterial({ color: 0xFF0000 })
+  new THREE.ConeGeometry(3.5, 1.5, 4),
+  new THREE.MeshStandardMaterial({ color: '#b35f45' })
 );
-roof.position.y = 2 / 2 + 3;
+roof.position.y = 1.5 / 2 + 3;
 roof.rotation.y = Math.PI / 4;
 house.add(roof);
 
