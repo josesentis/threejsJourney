@@ -88,6 +88,46 @@ bush5.position.set(-1.4, 0.1, 2.1);
 
 house.add(bush1, bush2, bush3, bush4, bush5);
 
+// Graves
+const graves = new THREE.Group();
+scene.add(graves);
+
+const graveGeometry = new THREE.BoxGeometry(0.6, 0.8, 0.2);
+const graveMaterial = new THREE.MeshStandardMaterial({ color: '#b2b6b1' });
+const crossVerticalGeometry = new THREE.BoxGeometry(0.2, 0.8, 0.2);
+const crossHorizontalGeometry = new THREE.BoxGeometry(0.6, 0.2, 0.3);
+
+// Adds crosses
+for (let i = 0; i < 20; i++) {
+  const angle = Math.random() * Math.PI * 2;
+  const radius = 4 + Math.random() * 5.5;
+  const x = Math.sin(angle) * radius;
+  const z = Math.cos(angle) * radius;
+
+  const crossPart1 = new THREE.Mesh(crossVerticalGeometry, graveMaterial);
+  const crossPart2 = new THREE.Mesh(crossHorizontalGeometry, graveMaterial);
+  crossPart2.position.y = 0.1;
+
+  const cross = new THREE.Group();
+  cross.position.set(x, 0.4, z);
+  cross.add(crossPart1, crossPart2);
+
+  graves.add(cross);
+}
+
+// Adds graves
+for (let i = 0; i < 50; i++) {
+  const grave = new THREE.Mesh(
+    graveGeometry,
+    graveMaterial
+  );
+  grave.position.y = 0.4;
+  // grave.position.z = 6;
+  // grave.position.x = i * 0.1;
+
+  graves.add(grave);
+}
+
 // Floor
 const floor = new THREE.Mesh(
   new THREE.PlaneGeometry(20, 20),
