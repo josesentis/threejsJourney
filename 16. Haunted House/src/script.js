@@ -94,15 +94,15 @@ scene.add(graves);
 
 const graveGeometry = new THREE.BoxGeometry(0.6, 0.8, 0.2);
 const graveMaterial = new THREE.MeshStandardMaterial({ color: '#b2b6b1' });
-const crossVerticalGeometry = new THREE.BoxGeometry(0.2, 0.8, 0.2);
+const crossVerticalGeometry = new THREE.BoxGeometry(0.2, 1, 0.2);
 const crossHorizontalGeometry = new THREE.BoxGeometry(0.6, 0.2, 0.3);
 
 // Adds crosses
-for (let i = 0; i < 30; i++) {
+for (let i = 0; i < 25; i++) {
   const angle = Math.random() * Math.PI * 2;
   const radius = 4 + Math.random() * 5.5;
   const x = Math.sin(angle) * radius;
-  const y = 0.3 + Math.random() * 0.1;
+  const y = 0.3 + Math.random() * 0.2;
   const z = Math.cos(angle) * radius;
   const rotation = (Math.random() - 0.5) * Math.PI * 0.1;
 
@@ -119,17 +119,20 @@ for (let i = 0; i < 30; i++) {
 }
 
 // Adds graves
-for (let i = 0; i < 30; i++) {
+for (let i = 0; i < 35; i++) {
   const angle = Math.random() * Math.PI * 2;
   const radius = 4 + Math.random() * 5.5;
   const x = Math.sin(angle) * radius;
+  const y = 0.3 + Math.random() * 0.1;
   const z = Math.cos(angle) * radius;
+  const rotation = (Math.random() - 0.5) * Math.PI * 0.1;
 
   const grave = new THREE.Mesh(
     graveGeometry,
     graveMaterial
   );
-  grave.position.set(x, 0, z);
+  grave.position.set(x, y, z);
+  grave.rotation.z = rotation;
 
   graves.add(grave);
 }
