@@ -104,7 +104,6 @@ for (let i = 0; i < 25; i++) {
   const x = Math.sin(angle) * radius;
   const y = 0.3 + Math.random() * 0.2;
   const z = Math.cos(angle) * radius;
-  const rotation = (Math.random() - 0.5) * Math.PI * 0.1;
 
   const crossPart1 = new THREE.Mesh(crossVerticalGeometry, graveMaterial);
   const crossPart2 = new THREE.Mesh(crossHorizontalGeometry, graveMaterial);
@@ -112,7 +111,8 @@ for (let i = 0; i < 25; i++) {
 
   const cross = new THREE.Group();
   cross.position.set(x, y, z);
-  cross.rotation.z = rotation;
+  cross.rotation.y = (Math.random() - 0.5) * 0.4;
+  cross.rotation.z = (Math.random() - 0.5) * 0.4;
   cross.add(crossPart1, crossPart2);
 
   graves.add(cross);
@@ -125,14 +125,14 @@ for (let i = 0; i < 35; i++) {
   const x = Math.sin(angle) * radius;
   const y = 0.3 + Math.random() * 0.1;
   const z = Math.cos(angle) * radius;
-  const rotation = (Math.random() - 0.5) * Math.PI * 0.1;
 
   const grave = new THREE.Mesh(
     graveGeometry,
     graveMaterial
   );
   grave.position.set(x, y, z);
-  grave.rotation.z = rotation;
+  grave.rotation.y = (Math.random() - 0.5) * 0.4;
+  grave.rotation.z = (Math.random() - 0.5) * 0.4;
 
   graves.add(grave);
 }
