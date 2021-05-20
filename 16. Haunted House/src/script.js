@@ -35,11 +35,34 @@ const doorRoughnessTexture = textureLoader.load('/textures/door/roughness.jpg');
 const bricksColorTexture = textureLoader.load('/textures/bricks/color.jpg');
 const bricksAmbientOcclusionTexture = textureLoader.load('/textures/bricks/ambientOcclusion.jpg');
 const bricksNormalTexture = textureLoader.load('/textures/bricks/normal.jpg');
-const bricksRoughnessTexture = textureLoader.load('/textures/door/roughness.jpg');
+const bricksRoughnessTexture = textureLoader.load('/textures/bricks/roughness.jpg');
+
+const grassColorTexture = textureLoader.load('/textures/grass/color.jpg');
+const grassAmbientOcclusionTexture = textureLoader.load('/textures/grass/ambientOcclusion.jpg');
+const grassNormalTexture = textureLoader.load('/textures/grass/normal.jpg');
+const grassRoughnessTexture = textureLoader.load('/textures/grass/roughness.jpg');
 
 /**
  * House
  */
+// Floor
+const floor = new THREE.Mesh(
+  new THREE.PlaneGeometry(20, 20),
+  new THREE.MeshStandardMaterial({
+    map: grassColorTexture,
+    aoMap: grassAmbientOcclusionTexture,
+    normalMap: grassNormalTexture,
+    roughnessMap: grassRoughnessTexture
+  })
+)
+floor.geometry.setAttribute(
+  'uv2',
+  new THREE.Float32BufferAttribute(floor.geometry.attributes.uv.array, 2)
+);
+floor.rotation.x = - Math.PI * 0.5;
+floor.position.y = 0;
+scene.add(floor);
+
 const house = new THREE.Group();
 scene.add(house);
 
@@ -177,15 +200,6 @@ for (let i = 0; i < 35; i++) {
   graves.add(grave);
 }
 
-// Floor
-const floor = new THREE.Mesh(
-  new THREE.PlaneGeometry(20, 20),
-  new THREE.MeshStandardMaterial({ color: '#a9c388' })
-)
-floor.rotation.x = - Math.PI * 0.5
-floor.position.y = 0
-scene.add(floor)
-
 /**
  * Lights
  */
@@ -205,7 +219,7 @@ scene.add(moonLight);
 
 // Door light
 const doorLight = new THREE.PointLight('#ff7d46', 1, 7);
-doorLight.position.set(0, 2.7, 2.7);
+doorLight.position.set(0, 2.7, 2.3);
 house.add(doorLight);
 
 /**
