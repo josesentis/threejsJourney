@@ -101,7 +101,12 @@ house.add(walls);
 // Hall
 const hall = new THREE.Mesh(
   new THREE.BoxGeometry(2.5, 2.5, 0.75),
-  new THREE.MeshStandardMaterial({ color: '#ac8e82' })
+  new THREE.MeshStandardMaterial({
+    map: bricksColorTexture,
+    aoMap: bricksAmbientOcclusionTexture,
+    normalMap: bricksNormalTexture,
+    roughnessMap: bricksRoughnessTexture
+  })
 )
 hall.position.y = 2.5 / 2;
 hall.position.z = 4 / 2 + 0.75 / 2;
@@ -144,29 +149,25 @@ const bushGeometry = new THREE.SphereGeometry(1, 32, 32);
 const bushMaterial = new THREE.MeshStandardMaterial({ color: '#89c854' });
 
 const bush1 = new THREE.Mesh(bushGeometry, bushMaterial);
-bush1.scale.set(0.55, 0.55, 0.55);
-// bush1.position.set(1.1, 0.2, 2.2);
-bush1.position.set(1.1, 0.2, 2.95);
+bush1.scale.set(0.5, 0.5, 0.5);
+bush1.position.set(1.7, 0.2, 2.5);
 
 const bush2 = new THREE.Mesh(bushGeometry, bushMaterial);
-bush2.scale.set(0.25, 0.25, 0.25);
-// bush2.position.set(1.7, 0.1, 2.1);
-bush2.position.set(1.7, 0.1, 2.85);
+bush2.scale.set(0.35, 0.35, 0.35);
+bush2.position.set(1.25, 0.1, 3);
 
 const bush3 = new THREE.Mesh(bushGeometry, bushMaterial);
-bush3.scale.set(0.4, 0.4, 0.4);
-// bush3.position.set(-0.9, 0.1, 2.2);
+bush3.scale.set(0.3, 0.3, 0.3);
 bush3.position.set(-0.9, 0.1, 2.95);
 
 const bush4 = new THREE.Mesh(bushGeometry, bushMaterial);
-bush4.scale.set(0.15, 0.15, 0.15);
-// bush4.position.set(-1, 0.05, 2.6);
-bush4.position.set(-1, 0.05, 3, 35);
+bush4.scale.set(0.4, 0.4, 0.4);
+bush4.position.set(-1.7, 0.15, 2.3);
 
 const bush5 = new THREE.Mesh(bushGeometry, bushMaterial);
-bush5.scale.set(0.3, 0.3, 0.3);
-// bush5.position.set(-1.4, 0.1, 2.1);
-bush5.position.set(-1.4, 0.1, 2.85);
+bush5.scale.set(0.15, 0.15, 0.15);
+bush5.position.set(-1.25, 0.05, 2.95);
+
 
 house.add(bush1, bush2, bush3, bush4, bush5);
 
@@ -182,7 +183,7 @@ const crossHorizontalGeometry = new THREE.BoxGeometry(0.6, 0.2, 0.3);
 // Adds crosses
 for (let i = 0; i < 25; i++) {
   const angle = Math.random() * Math.PI * 2;
-  const radius = 4 + Math.random() * 5.5;
+  const radius = 4.5 + Math.random() * 5.5;
   const x = Math.sin(angle) * radius;
   const y = 0.3 + Math.random() * 0.2;
   const z = Math.cos(angle) * radius;
@@ -205,7 +206,7 @@ for (let i = 0; i < 25; i++) {
 // Adds graves
 for (let i = 0; i < 35; i++) {
   const angle = Math.random() * Math.PI * 2;
-  const radius = 4 + Math.random() * 5.5;
+  const radius = 4.5 + Math.random() * 5.5;
   const x = Math.sin(angle) * radius;
   const y = 0.3 + Math.random() * 0.1;
   const z = Math.cos(angle) * radius;
