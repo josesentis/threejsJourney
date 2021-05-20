@@ -240,11 +240,14 @@ house.add(doorLight);
 /**
  * Ghosts
 */
-const ghost1 = new THREE.PointLight('#fff6cf', 2, 3);
+const ghost1 = new THREE.PointLight('#fcbe2d', 2, 3);
 scene.add(ghost1);
 
 const ghost2 = new THREE.PointLight('#ffefab', 2, 3);
 scene.add(ghost2);
+
+const ghost3 = new THREE.PointLight('#edde53', 2, 3);
+scene.add(ghost3);
 
 /**
  * Sizes
@@ -312,7 +315,13 @@ const tick = () => {
   const ghost2Angle = elapsedTime * 0.05;
   ghost2.position.x = Math.cos(ghost2Angle) * 5;
   ghost2.position.z = Math.sin(ghost2Angle) * 5;
-  ghost2.position.y = 1 + Math.sin(elapsedTime * 3);
+  ghost2.position.y = 1 + Math.sin(elapsedTime * 4);
+
+  const ghost3Angle = - elapsedTime * 0.3;
+  ghost3.position.x = Math.cos(ghost3Angle) * (6 + Math.sin(elapsedTime * 4));
+  ghost3.position.z = Math.sin(ghost3Angle) * (6 + Math.sin(elapsedTime * 4));
+  ghost3.position.y = Math.sin(elapsedTime * 3);
+  // ghost3.position.y = 2;
 
   // Render
   renderer.render(scene, camera);
