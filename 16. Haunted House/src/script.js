@@ -13,7 +13,11 @@ const gui = new dat.GUI()
 const canvas = document.querySelector('canvas.webgl')
 
 // Scene
-const scene = new THREE.Scene()
+const scene = new THREE.Scene();
+
+// Fog
+const fog = new THREE.Fog('#262837', 1, 15);
+scene.fog = fog;
 
 /**
  * Textures
@@ -195,9 +199,9 @@ window.addEventListener('resize', () => {
  */
 // Base camera
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100);
-camera.position.x = 12;
-camera.position.y = 10;
-camera.position.z = 15;
+camera.position.x = 8;
+camera.position.y = 7;
+camera.position.z = 12;
 scene.add(camera);
 
 // Controls
@@ -212,6 +216,7 @@ const renderer = new THREE.WebGLRenderer({
 });
 renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setClearColor('#262837');
 
 /**
  * Animate
