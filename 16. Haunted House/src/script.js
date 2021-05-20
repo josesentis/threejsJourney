@@ -99,13 +99,13 @@ walls.position.y = 3 / 2;
 house.add(walls);
 
 // Hall
-// const hall = new THREE.Mesh(
-//   new THREE.BoxGeometry(2.5, 2.5, 0.75),
-//   new THREE.MeshStandardMaterial({ color: '#ac8e82' })
-// )
-// hall.position.y = 2.5 / 2;
-// hall.position.z = 4 / 2 + 0.75 / 2;
-// house.add(hall);
+const hall = new THREE.Mesh(
+  new THREE.BoxGeometry(2.5, 2.5, 0.75),
+  new THREE.MeshStandardMaterial({ color: '#ac8e82' })
+)
+hall.position.y = 2.5 / 2;
+hall.position.z = 4 / 2 + 0.75 / 2;
+house.add(hall);
 
 // Door
 const door = new THREE.Mesh(
@@ -127,8 +127,7 @@ door.geometry.setAttribute(
   new THREE.Float32BufferAttribute(door.geometry.attributes.uv.array, 2)
 );
 door.position.y = 2 / 2;
-door.position.z = 4 / 2 + 0.01;
-// door.position.z = 4 / 2 + 0.75 + 0.01;
+door.position.z = 4 / 2 + 0.75 + 0.01;
 house.add(door);
 
 // Roof
@@ -146,23 +145,28 @@ const bushMaterial = new THREE.MeshStandardMaterial({ color: '#89c854' });
 
 const bush1 = new THREE.Mesh(bushGeometry, bushMaterial);
 bush1.scale.set(0.55, 0.55, 0.55);
-bush1.position.set(1.1, 0.2, 2.2);
+// bush1.position.set(1.1, 0.2, 2.2);
+bush1.position.set(1.1, 0.2, 2.95);
 
 const bush2 = new THREE.Mesh(bushGeometry, bushMaterial);
 bush2.scale.set(0.25, 0.25, 0.25);
-bush2.position.set(1.7, 0.1, 2.1);
+// bush2.position.set(1.7, 0.1, 2.1);
+bush2.position.set(1.7, 0.1, 2.85);
 
 const bush3 = new THREE.Mesh(bushGeometry, bushMaterial);
 bush3.scale.set(0.4, 0.4, 0.4);
-bush3.position.set(-0.9, 0.1, 2.2);
+// bush3.position.set(-0.9, 0.1, 2.2);
+bush3.position.set(-0.9, 0.1, 2.95);
 
 const bush4 = new THREE.Mesh(bushGeometry, bushMaterial);
 bush4.scale.set(0.15, 0.15, 0.15);
-bush4.position.set(-1, 0.05, 2.6);
+// bush4.position.set(-1, 0.05, 2.6);
+bush4.position.set(-1, 0.05, 3, 35);
 
 const bush5 = new THREE.Mesh(bushGeometry, bushMaterial);
 bush5.scale.set(0.3, 0.3, 0.3);
-bush5.position.set(-1.4, 0.1, 2.1);
+// bush5.position.set(-1.4, 0.1, 2.1);
+bush5.position.set(-1.4, 0.1, 2.85);
 
 house.add(bush1, bush2, bush3, bush4, bush5);
 
@@ -236,9 +240,13 @@ gui.add(moonLight.position, 'z').min(- 5).max(5).step(0.001);
 scene.add(moonLight);
 
 // Door light
-const doorLight = new THREE.PointLight('#ff7d46', 2, 7);
-doorLight.position.set(0, 2.7, 2.7);
+const doorLight = new THREE.PointLight('#ff7d46', 1, 7);
+doorLight.position.set(0, 2.85, 2.7);
 house.add(doorLight);
+
+const door2Light = new THREE.PointLight('#ff7d46', 2, 5);
+door2Light.position.set(0, 2.35, 3.45);
+house.add(door2Light);
 
 /**
  * Ghosts
